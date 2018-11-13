@@ -18,7 +18,7 @@ $(function () {
     var id = $(this).data("id");
     $.get("/products/" + id + "/description", function(data) {
       // Replace text of body-id div
-      $("#product_" + id + ".description").text(data);
+      console.log(data);
     });
   });
 });
