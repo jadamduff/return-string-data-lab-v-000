@@ -1,0 +1,12 @@
+<% @product.each do |product| %>
+  <div class="product" id="product_<%= product.id %>">
+    <ul>
+      <li>
+        <h1><%= product.name %></h1>
+      </li>
+      <li class="description">
+        <%= turncate product.description %>
+      </li>
+    </ul>
+  </div>
+<% end %>
