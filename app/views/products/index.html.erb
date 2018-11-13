@@ -19,10 +19,11 @@ $(function () {
     $.get("/products/" + id + "/description", function(data) {
       let desc = data
       $.get("/products/" + id + "/inventory", function(inventory) {
+        let inv;
         if (inventory === 'true') {
-          let inv = 'Available';
+          inv = 'Available';
         } else {
-          let inv = 'Sold Out';
+          inv = 'Sold Out';
         }
         debugger
         let html = desc + ' <br />' + inv;
