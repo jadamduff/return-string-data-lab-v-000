@@ -18,8 +18,8 @@ $(function () {
     var id = $(this).data("id");
     $.get("/products/" + id + "/description", function(data) {
       let desc = data
-      $.get("/products/" + id + "/inventory", function(data) {
-        if (data === 'true') {
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        if (inventory === 'true') {
           let inv = 'Available';
         } else {
           let inv = 'Sold Out';
