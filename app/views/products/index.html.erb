@@ -5,7 +5,8 @@
         <h1><%= product.name %></h1>
       </li>
       <li class="description">
-        <%= truncate product.description %>
+        <%= truncate product.description %><br />
+        <button class="js-more" data-id="<%= post.id %>">More...</button>
       </li>
     </ul>
   </div>
