@@ -1,32 +1,22 @@
+<h1>Products</h1>
 <% @products.each do |product| %>
-  <div class="product" id="product_<%= product.id %>">
-    <ul>
-      <li>
-        <h1><%= product.name %></h1>
-      </li>
-      <li class="description">
-        <%= truncate product.description %><br />
-        <button class="js-more" data-id="<%= product.id %>" id="more_info">More Info</button>
-      </li>
-    </ul>
-  </div>
+  <h3><%= product.name %></h3>
+  <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+  <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-more").on('click', function() {
+$(function() {
+  $(".js-more").on("click", function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(data) {
-      let desc = data
+    $.get("/products/" + id + "/description", function(description) {
       $.get("/products/" + id + "/inventory", function(inventory) {
-        let inv;
-        if (inventory === 'true') {
-          inv = 'Available';
-        } else {
-          inv = 'Sold Out';
+        var inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
         }
-        let html = desc + ' <br />' + inv;
-        $("#product_" + id + " li.description").html(html);
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
       });
     });
   });
